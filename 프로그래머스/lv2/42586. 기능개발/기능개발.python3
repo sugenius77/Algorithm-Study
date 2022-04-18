@@ -1,0 +1,17 @@
+import math
+def solution(progresses, speeds):
+    answer = []
+    days = []
+    vs = 0
+    for i in range(len(progresses)):
+        days.append(math.ceil((100-progresses[i]) / speeds[i]))
+        
+    for i in range(len(days)):
+        if days[i] > days[vs]:
+            answer.append(i - vs)
+            vs = i
+    answer.append(len(days) - vs)
+            
+                
+    print(days)
+    return answer
