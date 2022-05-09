@@ -1,0 +1,31 @@
+import heapq
+def solution(operations):
+    heap = []
+    for i in operations:
+        # 숫자 삽입
+        if i.startswith("I"):
+            heapq.heappush(heap,int(i[2:]))
+        else:
+            # 값이 있다면
+            if heap:
+                # 최댓값 삭제
+                if i[2:] == "1":
+                    tmp = []
+                    # 힙에 제일 뒤에 있는 값만(최댓값) 남겨두고 tmp에 append
+                    while len(heap) > 1:
+                        tmp.append(heapq.heappop(heap)) 
+                    # 힙 완전히 비우기
+                    heapq.heappop(heap)
+                    # 최댓값을 삭제한 tmp를 힙으로 할당
+                    heap = tmp
+                # 최솟값 삭제
+                else:
+                    heapq.heappop(heap)
+    # 힙이 비어있지않다면
+    if heap:
+        min_num = heapq.heappop(heap)
+        max_num = min_num
+        while heap:
+            max_num = heapq.heappop(heap)
+        return [max_num, min_num]
+    return [0,0]
