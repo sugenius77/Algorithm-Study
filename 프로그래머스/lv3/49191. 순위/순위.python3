@@ -1,0 +1,27 @@
+def solution(n, results):
+    board = [[None for _ in range(n)] for _ in range(n)]
+    # 이겼으면 True, 졌으면 False
+    # board = [[None, True, None, None, None], [False, None, False, False, True], [None, True, None, False, None], [None, True, True, None, None], [None, False, None, None, None]]
+    for win, lose in results:
+        board[win-1][lose-1] = True
+        board[lose-1][win-1] = False
+    
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                if board[j][i] == None:
+                    continue
+                # j가 i에게 졌고, i가 k에게 졌다면
+                # j가 k에게 졌다는 것을 의미하고
+                # k는 j에게 이겼다는 것을 의미
+                if board[j][i] == board[i][k]:
+                    board[j][k] = board[j][i]
+                    board[k][j] = not board[j][i]
+    answer = 0
+    # 자기 자신 None만 가지고 있는 노드만 찾는다.
+    # board = [[None, True, None, None, True], [False, None, False, False, True], [None, True, None, False, True], [None, True, True, None, True], [False, False, False, False, None]]
+    for i in range(n):
+        if None in board[i][:i] + board[i][i+1:]:
+            continue
+        answer += 1
+    return answer
