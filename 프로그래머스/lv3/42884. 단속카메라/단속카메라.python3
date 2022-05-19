@@ -1,0 +1,9 @@
+def solution(routes):
+    answer = 0
+    routes.sort(key=lambda x: x[1]) 
+    camera_position = -30001
+    for i in routes:
+        if camera_position < i[0]:
+            answer += 1
+            camera_position = i[1]
+    return answer
