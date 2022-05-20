@@ -1,5 +1,4 @@
-### 나의 풀이
-```python
+#### 나의 풀이 ####
 import sys
 
 n, m = map(int,sys.stdin.readline().split())
@@ -13,9 +12,9 @@ for i in data:
 
 print(max(min_list))
 
-```
-### 다른 풀이1 (min()함수 사용)
-```python 
+
+#### 다른 풀이1 (min()함수 사용) ####
+
 import sys
 n, m = map(int,sys.stdin.readline().split())
 
@@ -29,9 +28,8 @@ for i in range(n):
   result = max(result,min_value)
   
 print(result)
-```
-### 다른 풀이2 (2중 반목문 사용)
-```python
+
+#### 다른 풀이2 (2중 반복문 사용) ####
 import sys
 
 n, m = map(int,sys.stdin.readline().split())
@@ -48,4 +46,4 @@ for i in range(n):
   result = max(result,min_value)
 
 print(result)
-```
+
