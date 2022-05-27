@@ -49,8 +49,8 @@ def bfs(x,y,shark_size):
                 elif graph[nx][ny] == 0 or graph[nx][ny] == shark_size:
                   visited[nx][ny] = 1
                   q.append((nx,ny,dist+1))
-
-    fish.sort()
+    
+    fish.sort()        
     if fish:
       # 최단 거리의 물고기 - 행이 가장 작은 위치 - 열이 가장 작은 위치
       return [fish[0][1],fish[0][2],fish[0][0]]
@@ -77,5 +77,4 @@ while 1:
  
 
 print(result)
-
 
