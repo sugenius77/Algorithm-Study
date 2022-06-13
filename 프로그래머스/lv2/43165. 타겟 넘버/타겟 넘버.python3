@@ -1,0 +1,11 @@
+def solution(numbers, target):
+    array = [0]
+    idx = 0
+    for i in numbers:
+        for j in range(idx, len(array)):
+            array.append(array[j]+i)
+            array.append(array[j]-i)
+        idx = idx * 2 + 1
+
+    answer = array[-(2**len(numbers)):].count(target)
+    return answer
