@@ -1,6 +1,5 @@
 def dfs(graph, v, visited):
     visited[v] = True
-    print(v, end = " ")
     for i in graph[v]:
         if not visited[i]:
             dfs(graph,i,visited)
@@ -20,4 +19,4 @@ def solution(n, computers):
         if not visited[i]:
             dfs(graph,i,visited)
             answer += 1
-    return answer 
+    return answer
