@@ -6,6 +6,5 @@ def solution(numbers, target):
             array.append(array[j]+i)
             array.append(array[j]-i)
         idx = idx * 2 + 1
-
-    answer = array[-(2**len(numbers)):].count(target)
-    return answer
+        
+    return array[-(2**len(numbers)):].count(target)
