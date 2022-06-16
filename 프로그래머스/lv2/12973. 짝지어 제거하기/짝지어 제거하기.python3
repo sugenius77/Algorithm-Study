@@ -1,10 +1,11 @@
 def solution(s):
-    answer = 0 
+    # 문자열의 길이가 홀수일 때는 0
     if len(s) % 2 != 0: 
         return 0
     
     stack = [s[0]]
     for i in s[1:]:
+        # stack에 아무것도 없으면 인덱스 에러가 뜬다. 조건으로 넣어주자
         if len(stack) > 0 and stack[-1] == i:
             stack.pop()
         else:
