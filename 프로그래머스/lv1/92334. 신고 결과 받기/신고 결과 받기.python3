@@ -2,23 +2,26 @@ from collections import defaultdict
 def solution(id_list, report, k):
     user_id = []
     answer = []
- 
     notify = defaultdict(list)
     cnt = defaultdict(int)
+    
+
     for i in report:
         a,b = i.split()
         if a not in notify[b]:
             notify[b].append(a)
-            
+
     for i in notify:
         cnt[i] = len(notify[i])
-        
-            
+    
+
     for i in cnt:
         if cnt[i] >= k:
             user_id.append(notify[i])
-            
+    
+
     user_id = sum(user_id,[])
+    
 
     for i in id_list:
         answer.append(user_id.count(i))
