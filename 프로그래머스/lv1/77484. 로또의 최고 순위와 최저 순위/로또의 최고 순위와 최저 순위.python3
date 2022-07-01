@@ -1,22 +1,8 @@
-'''
-당첨 가능한 최저 순위 - 민우가 구매한 로또 번호에서 당첨 번호 확인 (안 보이는 번호는 미당첨으로 취급)
-당첨 가능한 최고 순위 - 민우가 구매한 로또 번호에서 안 보이는 (0) 숫자가 모두 당첨 번호일 때
-'''
-
 def solution(lottos, win_nums):
+    rank = [6,6,5,4,3,2,1]
     min_rank = 0
     for x in lottos:
         if x in win_nums:
             min_rank += 1
     max_rank = lottos.count(0) + min_rank
-    answer = []
-    if (7 - max_rank) < 6:
-        answer.append(7 - max_rank)
-    else:
-        answer.append(6)
-    if (7 - min_rank) < 6:
-        answer.append(7 - min_rank)
-    else:
-        answer.append(6)
-    
-    return answer
+    return [rank[max_rank],rank[min_rank]]
