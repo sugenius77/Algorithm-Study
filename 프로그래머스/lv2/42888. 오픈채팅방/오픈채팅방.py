@@ -11,11 +11,13 @@ def solution(record):
             array.append([user[0],user[1]])
         elif user[0] == "Change":
             dict[user[1]] = user[2]
+    # array = [['Enter', 'uid1234'], ['Enter', 'uid4567'], ['Leave', 'uid1234'], ['Enter', 'uid1234']]
+    # dict = {'uid1234': 'Prodo', 'uid4567': 'Ryan'}
     
     for i in array:
         if i[0] == "Enter":
             answer.append(dict[i[1]] + "님이 들어왔습니다.")
         if i[0] == "Leave":
             answer.append(dict[i[1]] + "님이 나갔습니다.")
-    
+
     return answer
