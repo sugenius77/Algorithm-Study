@@ -1,6 +1,6 @@
 import sys
 import copy
-from collections import deque
+
 R, C = map(int,sys.stdin.readline().split())
 graph = []
 
