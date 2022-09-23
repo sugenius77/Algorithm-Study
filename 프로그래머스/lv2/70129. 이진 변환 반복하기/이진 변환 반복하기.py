@@ -1,5 +1,7 @@
 def solution(s):
+    # 제거할 0의 개수
     zero = 0
+    # 이진 변환한 횟수
     cnt = 0
     result = s
     while True:
