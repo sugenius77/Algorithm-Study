@@ -1,33 +1,50 @@
 import sys
 
-input = sys.stdin.readline
+n = int(sys.stdin.readline())
 
-N = int(input())
-array = []
-result = 1e9 #결과값 출력을 위한 result값을 문제의 범위를 벗어나는 큰 수로 초기화
-visited = [False] * (N + 1) #방문여부를 확인하는 리스트
-for _ in range(N):
-    array.append(list(map(int, input().split())))
+graph = []
+start = []
+link = []
+
+for _ in range(n):
+  graph.append(list(map(int,sys.stdin.readline().split())))
+
+# 1000000000
+min_diff = int(1e9)
+
+def dfs(index):
+  global min_diff
+  # 재귀 탈출 조건 = 백트래킹 탑 체크 시점
+  if index == n//2:
+    Spower,Lpower = 0,0
+    # 스타트팀에 없으면 링크팀에 넣기
+    for i in range(n):
+      if i not in start:
+        link.append(i)
+    # 각 팀의 능력치 구하기
+    for i in range(n//2-1):
+      for j in range(i+1,n//2):
+        Spower += graph[start[i]][start[j]] + graph[start[j]][start[i]]
+        Lpower += graph[link[i]][link[j]] + graph[link[j]][link[i]]
+    diff = abs(Spower-Lpower)
+    
+    # 능력치가 최소인지 확인
+    if min_diff > diff:
+      min_diff = diff
+    # 링크팀은 계산이 끝나면 항상 비워준다.
+    link.clear()
+    return
+  
+  # dfs
+  for i in range(n):
+    if i in start:
+      continue
+    if len(start) > 0 and start[len(start)-1] > i:
+      continue
+    start.append(i)
+    dfs(index+1)
+    start.pop()
 
 
-def solve(depth, idx):
-    global result
-    if depth == (N // 2): # N // 2 번만큼 재귀를 돌면
-        start, link = 0, 0 #start팀과 link팀 0으로 선언
-        for i in range(N): 
-            for j in range(i + 1, N): #이중 리스트의 열은 굳이 0부터 돌필요가 없기 때문에 i + 1 로 범위를 좁혀준다. 
-                if visited[i] and visited[j]: #만약 i,j 둘다 방문 했다면 
-                    start += (array[i][j] + array[j][i]) #방문한 사람을 스타트팀에 더해준다.
-                elif not visited[i] and not visited[j]: # 방문 안한 i j 는 링크팀이므로
-                    link += (array[i][j] + array[j][i])  #방문안한 사람을 링크팀에 더해준다
-        
-        result = min(result, abs(start - link)) #최솟값을 결과값에 대입
-    for i in range(idx, N): 
-        if not visited[i]: #만약 방문을 안했다면
-            visited[i] = True #방문으로 처리
-            solve(depth + 1, i + 1) #재귀를 돈다 
-            visited[i] = False #방문 완료 처리
-
-
-solve(0, 0)
-print(result)
+dfs(0)
+print(min_diff)
