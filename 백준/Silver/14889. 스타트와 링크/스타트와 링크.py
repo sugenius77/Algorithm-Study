@@ -39,6 +39,8 @@ def dfs(index):
   for i in range(n):
     if i in start:
       continue
+    # 스타트팀이 존재한다는 것
+    # 스타트팀의 마지막 사람이 i보다 크다는 것은 이미 들어갔다왔던 (계산했던) 것이라는 뜻
     if len(start) > 0 and start[len(start)-1] > i:
       continue
     start.append(i)
@@ -48,3 +50,4 @@ def dfs(index):
 
 dfs(0)
 print(min_diff)
+
