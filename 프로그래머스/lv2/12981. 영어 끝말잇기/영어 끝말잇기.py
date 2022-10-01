@@ -1,19 +1,15 @@
 def solution(n, words):
     answer = []
     stack = [words[0]]
-    for i in range(len(words)-1):
-        if words[i+1] in stack:
-            answer = [(i+1) % n,(i+1)//n]
+    for i in range(1,len(words)):
+        if words[i] in stack:
+            answer = [(i % n) + 1,(i//n) +1]
             break
         else:            
-            stack.append(words[i+1])
-        if not words[i].endswith(words[i+1][0]):
-            answer = [(i+1) % n,(i+1)//n]
+            stack.append(words[i])
+        if not words[i-1].endswith(words[i][0]):
+            answer = [(i % n) + 1 ,(i//n) +1]
             break
     if stack == words:
         return [0,0]
-    
-    for i in range(2):
-        answer[i] += 1
-        
     return answer
