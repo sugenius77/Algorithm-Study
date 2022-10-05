@@ -47,7 +47,7 @@ def bfs(tmp_graph):
     cnt += i.count(0)
   ans = max(cnt,ans)
 
-# 백트래킹을 이용해서 벽을 세우는 경우의 수 구하기
+# 조합을 이용해서 경우의 수 구하기
 def make_wall():
   safe_zones_combi = combinations(safe_zone, 3)
   
