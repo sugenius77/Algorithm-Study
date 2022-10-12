@@ -8,26 +8,22 @@ for _ in range(r):
 
 dx = [-1,1,0,0]
 dy = [0,0,1,-1]
-# visited = [[False] * c for _ in range(r)]
 alpha = set()
 ans = 0
 
 def dfs(x,y,cnt):
   global ans
   ans = max(ans, cnt)
-  # visited[x][y] = True
-  alpha.add(graph[x][y])
   for i in range(4):
     nx = x + dx[i]
     ny = y + dy[i]
     if 0 <= nx < r  and 0 <= ny < c:
-      # if not visited[nx][ny]:
-        if graph[nx][ny] not in alpha:
-          # visited[nx][ny] = True
-          dfs(nx,ny,cnt+1)
-          # visited[nx][ny] = False
-          alpha.remove(graph[nx][ny])
+      if graph[nx][ny] not in alpha:
+        alpha.add(graph[nx][ny])
+        dfs(nx,ny,cnt+1)
+        alpha.remove(graph[nx][ny])
           
-
+alpha.add(graph[0][0])
 dfs(0,0,1)
+
 print(ans)
