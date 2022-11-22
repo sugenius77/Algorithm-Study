@@ -1,11 +1,14 @@
 def solution(word):
     answer = 0
-    dic = ['A', 'E', 'I', 'O', 'U']
-    li = [5**i for i in range(len(dic))]
+    word_list = []
+    words = 'AEIOU'
     
-    for i in range(len(word)-1,-1,-1):
-        idx = dic.index(word[i])
-        for j in range(5-i):
-            answer += li[j]*idx
-        answer+=1
-    return answer
+    def dfs(cnt, w):
+        if cnt == 5:
+            return 
+        for i in range(len(words)):
+            word_list.append(w + words[i])
+            dfs(cnt+1, w + words[i])
+    dfs(0,"")
+    
+    return word_list.index(word)+1
